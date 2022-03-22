@@ -5,14 +5,14 @@ public class Board {
     private Ship almirante;
 
     public Board(int[][] matrix, Ship captainShipList, Ship lieutenantShipList, Ship almirante) {
-        this.matrix = matrix;
+        this.matrix = new int[6][6];
         this.captainShipList = captainShipList;
         this.lieutenantShipList = lieutenantShipList;
         this.almirante = almirante;
     }
 
     public Board() {
-        this.matrix = null;
+        this.matrix = new int[6][6];
         this.captainShipList = null;
         this.lieutenantShipList = null;
         this.almirante = null;
@@ -58,8 +58,15 @@ public class Board {
         return 0;
     };
 
-    public void fillMatrix (){
-
+    public void showMatrix (){
+        for (int i=0;i< matrix.length;i++){
+            System.out.print("|");
+            for(int j=0;j< matrix[i].length;j++) {
+                System.out.print(matrix[i][j]);
+                if (j!=matrix[i].length-1) System.out.print("\t");
+            }
+            System.out.println("|");
+        }
     }
 
 

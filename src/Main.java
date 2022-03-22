@@ -20,12 +20,16 @@ public class Main {
         System.out.println("Hi " + person1.getName() + ", the CPU name assigned is " + cpu1.getName() +", please select the correct option: ");
         System.out.println("1. Assign coordinates");
         System.out.println("2. Assign random");
+        System.out.println("3. Print Matrix");
         int option = input.nextInt();
         if (option == 1 ) {
 
         } else if (option == 2) {
 
-        } else {
+        } else if (option==3){
+            boardPerson.showMatrix();
+        }
+        else {
             System.out.println("Invalid Option");
         }
     }
