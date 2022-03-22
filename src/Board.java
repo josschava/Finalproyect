@@ -53,9 +53,14 @@ public class Board {
     public int assignRandom(){
         return 0;
     };
+
     public int assigncoordinates(){
         return 0;
     };
+
+    public void fillMatrix (){
+
+    }
 
 
 }
