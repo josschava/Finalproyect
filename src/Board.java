@@ -1,10 +1,10 @@
 public class Board {
-    private int matrix;
+    private int matrix [][];
     private Ship captainShipList;
     private Ship lieutenantShipList;
     private Ship almirante;
 
-    public Board(int matrix, Ship captainShipList, Ship lieutenantShipList, Ship almirante) {
+    public Board(int[][] matrix, Ship captainShipList, Ship lieutenantShipList, Ship almirante) {
         this.matrix = matrix;
         this.captainShipList = captainShipList;
         this.lieutenantShipList = lieutenantShipList;
@@ -12,17 +12,17 @@ public class Board {
     }
 
     public Board() {
-        this.matrix = 0;
+        this.matrix = null;
         this.captainShipList = null;
         this.lieutenantShipList = null;
         this.almirante = null;
     }
 
-    public int getMatrix() {
+    public int[][] getMatrix() {
         return matrix;
     }
 
-    public void setMatrix(int matrix) {
+    public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
     }
 
