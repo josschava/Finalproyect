@@ -1,4 +1,3 @@
-import javax.swing.JOptionPane;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -27,7 +26,55 @@ public class Main {
         //task to assign ships
         int option = input.nextInt();
         if (option == 1) {
+            int coordI = 0;
+            int coordJ = 0;
+            //Assign coordinates for Almirante
+            boolean flag = true; //this is to control the while to know when should go out
+            while (flag == true){ //While flag is tru execute all this
+                System.out.println("Assigning Almirante ship that has 4 lives");
+                System.out.println("Assign coordenate I: ");
+                coordI = input.nextInt();
+                System.out.println("Assign coordenate J: ");
+                coordJ = input.nextInt();
+                if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
+                    boardPerson.assignCoordinates(coordI, coordJ, 4);
+                    flag = false;
+                } else {
+                    System.out.println("Please insert a coordinate between 0 and 5");
+                }
+            }
 
+            //Assign coordinates for Capitan
+            for (int i = 0; i < 2; i++){
+                System.out.println("Assigning Capitan ship that has 3 lives");
+                System.out.println("Assign coordenate I: "); //ask for coordinate I
+                coordI = input.nextInt();
+                System.out.println("Assign coordenate J: "); //ask for coordinate J
+                coordJ = input.nextInt();
+
+                if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
+                    boardPerson.assignCoordinates(coordI, coordJ, 3);
+                } else {
+                    i--;
+                    System.out.println("Please insert a coordinate between 0 and 5");
+                }
+            }
+            //Assign coordinates for Teniente
+            for (int i = 0; i < 3; i++){
+                System.out.println("Assigning Teniente ship that has 1 live");
+                System.out.println("Assign coordenate I: "); //ask for coordinate I
+                coordI = input.nextInt();
+                System.out.println("Assign coordenate J: "); //ask for coordinate J
+                coordJ = input.nextInt();
+
+                if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
+                    boardPerson.assignCoordinates(coordI, coordJ, 1);
+                } else {
+                    i--;
+                    System.out.println("Please insert a coordinate between 0 and 5");
+                }
+            }
+            boardPerson.showMatrix();
         } else if (option == 2) {
 
         } else if (option == 3) {
@@ -35,7 +82,7 @@ public class Main {
         } else {
             System.out.println("Invalid Option");
         }
-        System.out.println(person1.getName() + "now that the ships are assigned please select one of the options to start playing");
+        System.out.println(person1.getName() + " now that the ships are assigned please select one of the options to start playing");
 
         Scanner sn = new Scanner(System.in);
         boolean exit = false;
