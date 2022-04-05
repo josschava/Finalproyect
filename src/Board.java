@@ -1,30 +1,31 @@
 import javax.swing.*;
+import java.util.Random;
 
 public class Board {
-    private int matrix[][];
+    private char matrix[][];
     private Ship captainShipList;
     private Ship lieutenantShipList;
     private Ship almirante;
 
-    public Board(int[][] matrix, Ship captainShipList, Ship lieutenantShipList, Ship almirante) {
-        this.matrix = new int[6][6];
+    public Board(char[][] matrix, Ship captainShipList, Ship lieutenantShipList, Ship almirante) {
+        this.matrix = new char[6][6];
         this.captainShipList = captainShipList;
         this.lieutenantShipList = lieutenantShipList;
         this.almirante = almirante;
     }
 
     public Board() {
-        this.matrix = new int[6][6];
+        this.matrix = new char[6][6];
         this.captainShipList = null;
         this.lieutenantShipList = null;
         this.almirante = null;
     }
 
-    public int[][] getMatrix() {
+    public char[][] getMatrix() {
         return matrix;
     }
 
-    public void setMatrix(int[][] matrix) {
+    public void setMatrix(char[][] matrix) {
         this.matrix = matrix;
     }
 
@@ -52,18 +53,6 @@ public class Board {
         this.almirante = almirante;
     }
 
-    public int assignRandom() {
-        return 0;
-    }
-
-    ;
-
-    public int assigncoordinates() {
-        return 0;
-    }
-
-    ;
-
     public void showMatrix() {
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("|");
@@ -74,19 +63,48 @@ public class Board {
             System.out.println("|");
         }
     }
-    public int[][] fillMatrix() {
 
+    public void fillMatrix() {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                int value = Integer.parseInt(JOptionPane.showInputDialog("Please add the value for the position [" + i + "]" + "[" + j + "]"));
-                matrix[i][j] = value;
+                matrix[i][j] = ' ';
             }
         }
-        return matrix;
     }
+
     // For the assignment of the ships by coordinates
-    public void assignCoordinates(int i, int j, int value){ //receive the number of the row and column, and the live points of the ship
-                matrix[i][j] = value;
+    public void assignCoordinates(int i, int j, char value) { //receive the number of the row and column, and the live points of the ship
+        matrix[i][j] = value;
+    }
+
+    public void fillMatrixRandomly() {
+        Random random = new Random();
+        //Assign ships for Almirante
+        int iCoord = random.nextInt((5 - 0) + 1) + 0;
+        int jCoord = random.nextInt((5 - 0) + 1) + 0;
+
+        assignCoordinates(iCoord, jCoord, '4');
+
+        //Assign ships for Capitan
+        for (int i = 0; i < 2; i++) {
+            iCoord = random.nextInt((5 - 0) + 1) + 0;
+            jCoord = random.nextInt((5 - 0) + 1) + 0;
+            if (getMatrix()[iCoord][jCoord] == ' ') {//this if is to make sure that the coordinate is empty
+                assignCoordinates(iCoord, jCoord, '3');
+            } else {
+                i--;
             }
         }
+        //Assign ships for Teniente
+        for (int i = 0; i < 3; i++) {
+            iCoord = random.nextInt((5 - 0) + 1) + 0;
+            jCoord = random.nextInt((5 - 0) + 1) + 0;
+            if (getMatrix()[iCoord][jCoord] == ' ') {//this if is to make sure that the coordinate is empty
+                assignCoordinates(iCoord, jCoord, '1');
+            } else {
+                i--;
+            }
+        }
+    }
+}
 
