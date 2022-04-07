@@ -42,8 +42,9 @@ public class Main {
                     System.out.println("Assign coordinate J: ");
                     coordJ = input.nextInt();
                     if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
-                        if (boardPerson.getMatrix()[coordI][coordJ] == ' ') { //this if is to make sure that the coordinate is empty
-                            boardPerson.assignCoordinates(coordI, coordJ, '4'); //value of 4 is the 4 lives of Almirante ship
+                        Ship almirante = new Ship("Almirante", coordI, coordJ, 4, false);
+                        if (boardPerson.getMatrix()[coordI][coordJ].getLifePoints() == 0) { //this if is to make sure that the coordinate is empty
+                            boardPerson.assignCoordinates(coordI, coordJ, almirante); //value of 4 is the 4 lives of Almirante ship
                             flag = false;
                         } else {
                             System.out.println("This coordinate is already in use, please assign again");
@@ -61,8 +62,9 @@ public class Main {
                     coordJ = input.nextInt();
 
                     if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
-                        if (boardPerson.getMatrix()[coordI][coordJ] == ' ') {//this if is to make sure that the coordinate is empty
-                            boardPerson.assignCoordinates(coordI, coordJ, '3');
+                        Ship capitan = new Ship("Capitan", coordI, coordJ, 3, false);
+                        if (boardPerson.getMatrix()[coordI][coordJ].getLifePoints() == 0) {//this if is to make sure that the coordinate is empty
+                            boardPerson.assignCoordinates(coordI, coordJ, capitan);
                         } else {
                             System.out.println("This coordinate is already in use, please assign again");
                             i--;
@@ -81,8 +83,9 @@ public class Main {
                     coordJ = input.nextInt();
 
                     if (coordI >= 0 && coordI <= 5 && coordJ >= 0 && coordJ <= 5) {
-                        if (boardPerson.getMatrix()[coordI][coordJ] == ' ') {//this if is to make sure that the coordinate is empty
-                            boardPerson.assignCoordinates(coordI, coordJ, '1');
+                        Ship teniente = new Ship("Teniente", coordI, coordJ, 1, false);
+                        if (boardPerson.getMatrix()[coordI][coordJ].getLifePoints() == 0) {//this if is to make sure that the coordinate is empty
+                            boardPerson.assignCoordinates(coordI, coordJ, teniente);
                         } else {
                             System.out.println("This coordinate is already in use, please assign again");
                             i--;
@@ -111,24 +114,29 @@ public class Main {
             System.out.println("1. Attack");
             System.out.println("2. See attack board");
             System.out.println("3. See own dashboard");
-            System.out.println("4. Exit");
+            System.out.println("4. Cheat");
+            System.out.println("5. Exit");
             try {
                 System.out.println("Enter one of the options");
                 opt = input.nextInt();
                 switch (opt) {
                     case 1:
                         System.out.println("You selected Attack");
-
+                        boardCPU.attack();
                         break;
                     case 2:
                         System.out.println("You selected View Attack Board");
-                        boardCPU.showMatrix(); //this show the CPU board, ships assigned randomly
+                        boardCPU.seeAttackBoard(); //this show the CPU board
                         break;
                     case 3:
                         System.out.println("You have selected View Own Dashboard");
                         boardPerson.showMatrix();  //this is to make sure that assign randomly is working
                         break;
                     case 4:
+                        System.out.println("You have selected cheat");
+                        boardCPU.seeOwnBoard();  //this is to make sure that assign randomly is working
+                        break;
+                    case 5:
                         exit = true;
                         break;
                     default:
