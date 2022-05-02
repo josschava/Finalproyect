@@ -104,6 +104,7 @@ public class Board {
             System.out.println("You already attacked this ship and was destroyed, please select another coordinate");
         }
     }
+
     public void attackRandom() {
         Random random = new Random();
         int coordI = random.nextInt((5 - 0) + 1) + 0;
@@ -151,7 +152,7 @@ public class Board {
                     System.out.print("O");
                 } else if (matrix[i][j].getLifePoints() == 0 && matrix[i][j].getAttacked() == true) {
                     System.out.print("*");
-                } else if (matrix[i][j].getLifePoints() > 0 && matrix[i][j].getAttacked() == false){
+                } else if (matrix[i][j].getLifePoints() > 0 && matrix[i][j].getAttacked() == false) {
                     System.out.print(matrix[i][j].getLifePoints());
                 } else {
                     System.out.print(" ");
@@ -161,5 +162,18 @@ public class Board {
             System.out.println("|");
         }
     }
-}
 
+    public void gameEnd() {
+        int count = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j].getLifePoints() != 0) {
+                    count = count +1;
+                }
+            }
+        }
+        if (count == 0){
+            System.out.println("GAME COMPLETED");
+        }
+    }
+}

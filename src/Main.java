@@ -123,8 +123,10 @@ public class Main {
                     case 1:
                         System.out.println("You selected Attack");
                         boardCPU.attack();
+                        boardCPU.gameEnd();
                         System.out.println("\n Turn of CPU to attack");
                         boardPerson.attackRandom();
+                        boardPerson.gameEnd();
                         break;
                     case 2:
                         System.out.println("You selected View Attack Board");
